@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Jewelry Report - ${appraisal.stock_number}</title>
+      <style>
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+        
+        body {
+          font-family: 'Times New Roman', serif;
+          background: white;
+          color: #000;
+          line-height: 1.4;
+        }
+        
+        .report-container {
+          width: 750px;
+          height: 1000px;
+          margin: 0 auto;
+          background: white;
+          position: relative;
+          border: none;
+          padding: 40px 30px;
+          overflow: hidden;
+        }
+        
+        /* Decorative border images - ornate pattern like certificate */
+        .report-container::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-image: 
+            url('${imagesBaseUrl}top_left.png'),
+            url('${imagesBaseUrl}top_right.png'),
+            url('${imagesBaseUrl}bottom_left.png'),
+            url('${imagesBaseUrl}bottom_right.png'),
+            url('${imagesBaseUrl}left.png'),
+            url('${imagesBaseUrl}right.png'),
+            url('${imagesBaseUrl}top.png'),
+            url('${imagesBaseUrl}bottom.png');
+          background-position: 
+            top left,
+            top right,
+            bottom left,
+            bottom right,
+            left top,
+            right top,
+            top left,
+            bottom left;
+          background-repeat: repeat-y, repeat-y, repeat-y, repeat-y, repeat-y, repeat-y, repeat-x, repeat-x;
+          background-size: 80px 80px, 80px 80px, 80px 80px, 80px 80px, 40px auto, 40px auto, auto 40px, auto 40px;
+          pointer-events: none;
+          z-index: 1;
+        }
+        
+        .report-content {
+          position: relative;
+          z-index: 2;
+        }
+        
+        .header {
+          text-align: center;
+          margin-bottom: 15px;
+        }
+        
+        .report-title {
+          font-size: 32px;
+          font-weight: bold;
+          color: #305e78;
+          margin-bottom: 15px;
+          font-family: 'Times New Roman', serif;
+          text-transform: uppercase;
+          letter-spacing: 2px;
+        }
+        
+        .diamond-icons {
+          display: flex;
+          justify-content: center;
+          gap: 15px;
+          margin-bottom: 10px;
+        }
+        
+        .diamond-icon {
+          width: 30px;
+          height: 30px;
+        }
+        
+        .logo-section {
+          margin-bottom: 10px;
+        }
+        
+        .logo {
+          max-width: 150px;
+          height: auto;
+          margin: 0 auto;
+          display: block;
+        }
+        
+        .company-info {
+          text-align: center;
+          font-size: 11px;
+          color: #305e78;
+          margin-top: 8px;
+          line-height: 1.3;
+        }
+        
+        .report-details {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 15px;
+          font-size: 12px;
+        }
+        
+        .detail-item {
+          display: flex;
+          flex-direction: column;
+        }
+        
+        .detail-label {
+          font-weight: bold;
+          margin-bottom: 5px;
+        }
+        
+        .precious-stones-section {
+          background: #CDDBDF;
+          padding: 15px;
+          border-radius: 8px;
+          margin-bottom: 15px;
+        }
+        
+        .section-title {
+          font-size: 16px;
+          font-weight: bold;
+          margin-bottom: 10px;
+          color: #305e78;
+        }
+        
+        .stones-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 15px;
+          margin-bottom: 15px;
+        }
+        
+        .stone-spec {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 5px;
+          font-size: 12px;
+        }
+        
+        .spec-label {
+          font-weight: bold;
+        }
+        
+        .jewelry-image {
+          text-align: center;
+          margin: 10px 0;
+        }
+        
+        .jewelry-image img {
+          max-width: 200px;
+          height: auto;
+          border: 2px solid #ccc;
+          border-radius: 8px;
+        }
+        
+        .description {
+          font-size: 12px;
+          line-height: 1.4;
+          margin-top: 10px;
+        }
+        
+        .summary-section {
+          text-align: center;
+          margin: 15px 0;
+        }
+        
+        .total-weight {
+          font-size: 14px;
+          font-weight: bold;
+          margin-bottom: 5px;
+        }
+        
+        .appraised-value {
+          font-size: 18px;
+          font-weight: bold;
+          color: #cc0000;
+        }
+        
+        .grading-scales {
+          display: flex;
+          justify-content: space-around;
+          margin: 15px 0;
+        }
+        
+        .grading-scale {
+          text-align: center;
+          flex: 1;
+        }
+        
+        .scale-title {
+          font-weight: bold;
+          margin-bottom: 5px;
+          font-size: 12px;
+        }
+        
+        .diamond-examples {
+          display: flex;
+          justify-content: center;
+          gap: 5px;
+          margin-bottom: 5px;
+        }
+        
+        .diamond-example {
+          width: 20px;
+          height: 20px;
+        }
+        
+        .scale-labels {
+          font-size: 10px;
+          margin-bottom: 3px;
+        }
+        
+        .color-scale {
+          font-size: 8px;
+          letter-spacing: 1px;
+        }
+        
+        .footer {
+          text-align: center;
+          margin-top: 15px;
+        }
+        
+        .footer-logo {
+          width: 60px;
+          height: 60px;
+          margin: 0 auto;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="report-container">
+        <div class="report-content">
+        <!-- Header -->
+        <div class="header">
+          <div class="report-title">Jewelry Report</div>
+          <div class="diamond-icons">
+            <img src="${imagesBaseUrl}diamond1.jpg" alt="Diamond" class="diamond-icon">
+            <img src="${imagesBaseUrl}diamond2.jpg" alt="Diamond" class="diamond-icon">
+          </div>
+          <div class="logo-section">
+            <img src="${imagesBaseUrl}prime_style_logo.jpg" alt="Prime Style Logo" class="logo">
+            <div class="company-info">
+              EST 1999<br>
+              LUXURY YOU CAN AFFORD<br>
+              1557 NE 164th street, North Miami Beach, FL 33162<br>
+              Tel: 888.532.9440 | 212.302.3377
+            </div>
+          </div>
+        </div>
+        
+        <!-- Report Details -->
+        <div class="report-details">
+          <div class="detail-item">
+            <div class="detail-label">Sale Number:</div>
+            <div>${appraisal.stock_number || 'N/A'}</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">Name:</div>
+            <div>Customer Name</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">Item Id:</div>
+            <div>${appraisal.id || ''}</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">Date:</div>
+            <div>${new Date().toLocaleDateString()}</div>
+          </div>
+        </div>
+        
+        <!-- Precious Stones Section -->
+        <div class="precious-stones-section">
+          <div class="section-title">Precious Stones</div>
+          <div class="stones-grid">
+            <div>
+              <div class="stone-spec">
+                <span class="spec-label">TYPE:</span>
+                <span>${appraisal.type || 'LAB GROWN DIAMONDS'}</span>
+              </div>
+              <div class="stone-spec">
+                <span class="spec-label">SHAPE:</span>
+                <span>${appraisal.shape || 'PRINCESS AND ROUND'}</span>
+              </div>
+              <div class="stone-spec">
+                <span class="spec-label">MEASUREMENTS:</span>
+                <span>${appraisal.measurement || '6.84MM-6.80MM'}</span>
+              </div>
+              <div class="stone-spec">
+                <span class="spec-label">COLOR:</span>
+                <span>${appraisal.color || 'E'}</span>
+              </div>
+            </div>
+            <div>
+              <div class="stone-spec">
+                <span class="spec-label">CLARITY:</span>
+                <span>${appraisal.clarity || 'VS1'}</span>
+              </div>
+              <div class="stone-spec">
+                <span class="spec-label">POLISH & SYMMETRY:</span>
+                <span>${appraisal.polish_symmetry || 'VERY GOOD'}</span>
+              </div>
+              <div class="stone-spec">
+                <span class="spec-label">Precious Metal:</span>
+                <span>${appraisal.precious_metal || '14kt white gold'}</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="jewelry-image">
+            <img src="${appraisal.image_url || imagesBaseUrl + 'diamond1.jpg'}" alt="Jewelry" class="jewelry-image">
+          </div>
+          
+          <div class="description">
+            ${appraisal.description || '14KT WHITE GOLD DIAMOND ENGAGEMENT RING. CENTER STONE IS WEIGHING 2.00CT E IN COLOR AND VS1 I IN CLARITY. SIDE DIAMONDS ARE WEIGHING 0.85CT TOTAL F-G IN COLOR AND VS1-CVS2 IN CLARITY.'}
+          </div>
+        </div>
+        
+        <!-- Summary Section -->
+        <div class="summary-section">
+          <div class="total-weight">DIAMOND TOTAL WEIGHT IS ${appraisal.diamond_weight || '2.85'} CARATS</div>
+          <div class="appraised-value">APPRAISED RETAIL REPLACEMENT VALUE IS $${appraisal.replacement_value || '9,847.00'}</div>
+        </div>
+        
+        <!-- Grading Scales -->
+        <div class="grading-scales">
+          <div class="grading-scale">
+            <div class="scale-title">Color</div>
+            <div class="diamond-examples">
+              <img src="${imagesBaseUrl}diamond1.jpg" alt="Diamond" class="diamond-example">
+              <img src="${imagesBaseUrl}diamond2.jpg" alt="Diamond" class="diamond-example">
+              <img src="${imagesBaseUrl}diamond1.jpg" alt="Diamond" class="diamond-example">
+            </div>
+            <div class="scale-labels">D E F G H I J K L M N O P Q R S T U V W X Y Z</div>
+          </div>
+          <div class="grading-scale">
+            <div class="scale-title">Clarity</div>
+            <div class="diamond-examples">
+              <img src="${imagesBaseUrl}diamond1.jpg" alt="Diamond" class="diamond-example">
+              <img src="${imagesBaseUrl}diamond2.jpg" alt="Diamond" class="diamond-example">
+              <img src="${imagesBaseUrl}diamond1.jpg" alt="Diamond" class="diamond-example">
+            </div>
+            <div class="scale-labels">FL-IF VS1-2 I2-3</div>
+          </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+          <img src="${imagesBaseUrl}prime_style_logo.jpg" alt="Prime Style" class="footer-logo">
+        </div>
+        </div>
+      </div>
+    </body>
+    </html>

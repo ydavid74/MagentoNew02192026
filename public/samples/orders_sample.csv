@@ -1,0 +1,3 @@
+customer_email,purchase_from,order_date,total_amount,current_status
+"john.smith@email.com","Online Store","2024-01-15",2850.00,"completed"
+"sarah.johnson@email.com","Showroom","2024-01-20",4200.00,"in_production"

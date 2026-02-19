@@ -1,0 +1,523 @@
+/* Enhanced Modern Component Styles - Optimized for Readability */
+
+@layer components {
+  /* Enhanced Typography for Better Readability */
+  .text-readable {
+    @apply leading-relaxed tracking-wide;
+  }
+
+  .text-heading {
+    @apply font-semibold tracking-tight leading-tight;
+  }
+
+  .text-body {
+    @apply leading-7 text-base;
+  }
+
+  .text-small {
+    @apply leading-6 text-sm;
+  }
+
+  /* Enhanced Card Styles with Small Rounded Corners */
+  .modern-card {
+    @apply bg-card border border-border rounded-md shadow-sm hover:shadow-md transition-all duration-300 p-4;
+  }
+
+  .modern-card-hover {
+    @apply hover:shadow-lg hover:scale-[1.01] transition-all duration-300;
+  }
+
+  .modern-card-compact {
+    @apply bg-card border border-border rounded-md shadow-sm p-3;
+  }
+
+  .modern-card-spacious {
+    @apply bg-card border border-border rounded-md shadow-sm p-6;
+  }
+
+  /* Enhanced Button Styles with Efficient Spacing */
+  .btn-modern {
+    @apply rounded-md font-medium transition-all duration-200 ease-in-out shadow-sm px-3 py-2;
+  }
+
+  .btn-modern:hover {
+    @apply transform translate-y-[-1px] shadow-md;
+  }
+
+  .btn-modern:active {
+    @apply transform translate-y-0 shadow-sm;
+  }
+
+  .btn-modern-large {
+    @apply rounded-md font-medium transition-all duration-200 ease-in-out shadow-sm px-4 py-2.5 text-base;
+  }
+
+  .btn-modern-small {
+    @apply rounded-md font-medium transition-all duration-200 ease-in-out shadow-sm px-2.5 py-1.5 text-sm;
+  }
+
+  /* Enhanced Input Styles with Efficient Spacing */
+  .input-modern {
+    @apply rounded-md border-border bg-background transition-all duration-200 px-3 py-2 text-sm;
+  }
+
+  .input-modern:focus {
+    @apply border-primary shadow-sm ring-2 ring-primary/20 outline-none;
+  }
+
+  .input-modern-large {
+    @apply rounded-md border-border bg-background transition-all duration-200 px-4 py-3 text-base;
+  }
+
+  .input-modern-small {
+    @apply rounded-md border-border bg-background transition-all duration-200 px-2.5 py-1.5 text-sm;
+  }
+
+  /* Enhanced Form Labels with Efficient Spacing */
+  .form-label-modern {
+    @apply text-sm font-semibold text-foreground mb-1.5 block;
+  }
+
+  .form-label-modern-required::after {
+    content: " *";
+    @apply text-destructive;
+  }
+
+  /* Modern Sidebar Enhancements */
+  .sidebar-modern {
+    @apply bg-sidebar border-r border-sidebar-border shadow-lg;
+  }
+
+  .sidebar-item-modern {
+    @apply rounded-md mx-1.5 transition-all duration-200;
+  }
+
+  .sidebar-item-modern:hover {
+    @apply bg-sidebar-accent transform translate-x-0.5 shadow-sm;
+  }
+
+  /* Modern Navigation */
+  .nav-modern {
+    @apply bg-card/95 border-b border-border shadow-sm backdrop-blur-sm;
+  }
+
+  /* Enhanced Table Styles with Small Rounded Corners */
+  .table-modern {
+    @apply rounded-md overflow-hidden border border-border w-full;
+  }
+
+  .table-modern th {
+    @apply bg-muted/50 font-semibold text-muted-foreground px-4 py-3 text-left text-sm uppercase tracking-wider;
+  }
+
+  .table-modern td {
+    @apply px-4 py-3 text-sm border-t border-border;
+  }
+
+  .table-modern tr:hover {
+    @apply bg-muted/30 transition-colors duration-200;
+  }
+
+  .table-modern-striped tr:nth-child(even) {
+    @apply bg-muted/20;
+  }
+
+  .table-modern-compact th,
+  .table-modern-compact td {
+    @apply px-3 py-2 text-sm;
+  }
+
+  /* Enhanced Badge Styles with Efficient Spacing */
+  .badge-modern {
+    @apply rounded-full px-2.5 py-1 text-xs font-semibold tracking-wide;
+  }
+
+  .badge-modern-large {
+    @apply rounded-full px-3 py-1.5 text-sm font-semibold tracking-wide;
+  }
+
+  .badge-modern-small {
+    @apply rounded-full px-2 py-0.5 text-xs font-semibold tracking-wide;
+  }
+
+  .badge-modern.success {
+    @apply bg-success text-success-foreground shadow-sm;
+  }
+
+  .badge-modern.warning {
+    @apply bg-warning text-warning-foreground shadow-sm;
+  }
+
+  .badge-modern.destructive {
+    @apply bg-destructive text-destructive-foreground shadow-sm;
+  }
+
+  .badge-modern.primary {
+    @apply bg-primary text-primary-foreground shadow-sm;
+  }
+
+  .badge-modern.secondary {
+    @apply bg-secondary text-secondary-foreground shadow-sm;
+  }
+
+  .badge-modern.accent {
+    @apply bg-accent text-accent-foreground shadow-sm;
+  }
+
+  /* Modern Loading States */
+  .loading-modern {
+    @apply animate-pulse bg-muted rounded-lg;
+  }
+
+  /* Modern Dropdown with Small Rounded Corners */
+  .dropdown-modern {
+    @apply rounded-md border border-border bg-popover shadow-lg backdrop-blur-sm;
+  }
+
+  /* Modern Modal/Dialog with Small Rounded Corners */
+  .modal-modern {
+    @apply rounded-md border border-border bg-popover shadow-2xl backdrop-blur-sm;
+  }
+
+  /* Enhanced Form Styles for Better UX */
+  .form-modern {
+    @apply space-y-8;
+  }
+
+  .form-group-modern {
+    @apply space-y-3;
+  }
+
+  .form-section-modern {
+    @apply space-y-6 p-6 bg-muted/30 rounded-md border border-border;
+  }
+
+  .form-section-modern h3 {
+    @apply text-lg font-semibold text-foreground mb-4;
+  }
+
+  /* Modern Status Indicators */
+  .status-dot {
+    @apply w-2 h-2 rounded-full;
+  }
+
+  .status-dot.online {
+    @apply bg-success;
+  }
+
+  .status-dot.offline {
+    @apply bg-muted-foreground;
+  }
+
+  .status-dot.warning {
+    @apply bg-warning;
+  }
+
+  /* Modern Progress Bars */
+  .progress-modern {
+    @apply h-2 bg-muted rounded-full overflow-hidden;
+  }
+
+  .progress-modern-fill {
+    @apply h-full bg-primary rounded-full transition-all duration-300 ease-out;
+  }
+
+  /* Modern Tooltips */
+  .tooltip-modern {
+    @apply rounded-lg bg-popover border border-border px-3 py-2 text-sm shadow-lg backdrop-blur-sm;
+  }
+
+  /* Enhanced Alert Styles with Small Rounded Corners */
+  .alert-modern {
+    @apply rounded-md border p-6 shadow-sm;
+  }
+
+  .alert-modern.success {
+    @apply bg-success/10 border-success/30 text-success font-medium;
+  }
+
+  .alert-modern.warning {
+    @apply bg-warning/10 border-warning/30 text-warning font-medium;
+  }
+
+  .alert-modern.destructive {
+    @apply bg-destructive/10 border-destructive/30 text-destructive font-medium;
+  }
+
+  .alert-modern.info {
+    @apply bg-primary/10 border-primary/30 text-primary font-medium;
+  }
+
+  .alert-modern-compact {
+    @apply rounded-md border p-4 shadow-sm;
+  }
+
+  .alert-modern-spacious {
+    @apply rounded-md border p-8 shadow-sm;
+  }
+
+  /* Enhanced Data Display with Small Rounded Corners */
+  .stat-modern {
+    @apply p-6 rounded-md bg-card border border-border shadow-sm hover:shadow-md transition-all duration-300;
+  }
+
+  .stat-modern-value {
+    @apply text-3xl font-bold text-foreground tracking-tight;
+  }
+
+  .stat-modern-label {
+    @apply text-sm text-muted-foreground mt-2 font-semibold uppercase tracking-wider;
+  }
+
+  .stat-modern-compact {
+    @apply p-4 rounded-md bg-card border border-border shadow-sm;
+  }
+
+  .stat-modern-spacious {
+    @apply p-8 rounded-md bg-card border border-border shadow-sm;
+  }
+
+  .stat-modern-value-large {
+    @apply text-4xl font-bold text-foreground tracking-tight;
+  }
+
+  .stat-modern-value-small {
+    @apply text-2xl font-bold text-foreground tracking-tight;
+  }
+
+  /* Modern Status Indicators */
+  .status-dot {
+    @apply w-3 h-3 rounded-full shadow-sm;
+  }
+
+  .status-dot.online {
+    @apply bg-success;
+  }
+
+  .status-dot.offline {
+    @apply bg-muted-foreground;
+  }
+
+  .status-dot.warning {
+    @apply bg-warning;
+  }
+
+  .status-dot.error {
+    @apply bg-destructive;
+  }
+
+  /* Modern Search Input with Small Rounded Corners */
+  .search-modern {
+    @apply relative;
+  }
+
+  .search-modern input {
+    @apply pl-10 pr-4 py-2 rounded-md border border-border bg-background;
+  }
+
+  .search-modern-icon {
+    @apply absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground;
+  }
+
+  /* Modern Pagination */
+  .pagination-modern {
+    @apply flex items-center space-x-1;
+  }
+
+  .pagination-modern button {
+    @apply px-3 py-2 rounded-md border border-border bg-background hover:bg-muted transition-colors;
+  }
+
+  .pagination-modern button.active {
+    @apply bg-primary text-primary-foreground border-primary;
+  }
+
+  /* Modern Tabs */
+  .tabs-modern {
+    @apply border-b border-border;
+  }
+
+  .tab-modern {
+    @apply px-4 py-2 border-b-2 border-transparent hover:border-muted-foreground transition-colors;
+  }
+
+  .tab-modern.active {
+    @apply border-primary text-primary;
+  }
+
+  /* Modern Accordion with Small Rounded Corners */
+  .accordion-modern {
+    @apply border border-border rounded-md overflow-hidden;
+  }
+
+  .accordion-modern-trigger {
+    @apply w-full p-4 text-left hover:bg-muted transition-colors;
+  }
+
+  .accordion-modern-content {
+    @apply p-4 border-t border-border bg-muted/30;
+  }
+
+  /* Modern Switch */
+  .switch-modern {
+    @apply relative inline-flex h-6 w-11 items-center rounded-full transition-colors;
+  }
+
+  .switch-modern-thumb {
+    @apply inline-block h-4 w-4 transform rounded-full bg-white transition-transform;
+  }
+
+  .switch-modern[data-state="checked"] {
+    @apply bg-primary;
+  }
+
+  .switch-modern[data-state="checked"] .switch-modern-thumb {
+    @apply translate-x-5;
+  }
+
+  .switch-modern[data-state="unchecked"] {
+    @apply bg-muted-foreground/20;
+  }
+
+  /* Modern Slider */
+  .slider-modern {
+    @apply relative flex items-center select-none touch-none w-full h-5;
+  }
+
+  .slider-modern-track {
+    @apply bg-muted relative grow rounded-full h-2;
+  }
+
+  .slider-modern-range {
+    @apply absolute bg-primary h-full rounded-full;
+  }
+
+  .slider-modern-thumb {
+    @apply block w-5 h-5 bg-primary rounded-full hover:bg-primary-hover focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2;
+  }
+
+  /* Enhanced Reading Experience */
+  .content-readable {
+    @apply max-w-4xl mx-auto leading-7 text-base;
+  }
+
+  .content-readable h1 {
+    @apply text-3xl font-bold text-foreground mb-6 mt-8 first:mt-0;
+  }
+
+  .content-readable h2 {
+    @apply text-2xl font-semibold text-foreground mb-4 mt-6;
+  }
+
+  .content-readable h3 {
+    @apply text-xl font-semibold text-foreground mb-3 mt-5;
+  }
+
+  .content-readable p {
+    @apply mb-4 text-foreground leading-7;
+  }
+
+  .content-readable ul,
+  .content-readable ol {
+    @apply mb-4 pl-6 space-y-2;
+  }
+
+  .content-readable li {
+    @apply leading-7;
+  }
+
+  .content-readable blockquote {
+    @apply border-l-4 border-primary pl-4 py-2 my-6 bg-muted/30 italic;
+  }
+
+  .content-readable code {
+    @apply bg-muted px-2 py-1 rounded text-sm font-mono;
+  }
+
+  .content-readable pre {
+    @apply bg-muted p-4 rounded-lg overflow-x-auto my-4;
+  }
+
+  /* Enhanced Spacing Utilities */
+  .section-spacing {
+    @apply py-8;
+  }
+
+  .section-spacing-large {
+    @apply py-12;
+  }
+
+  .section-spacing-small {
+    @apply py-4;
+  }
+
+  /* Enhanced Focus States for Accessibility */
+  .focus-visible-modern {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+  }
+
+  /* Enhanced Loading States */
+  .loading-skeleton {
+    @apply animate-pulse bg-muted rounded-lg;
+  }
+
+  .loading-skeleton-text {
+    @apply h-4 bg-muted rounded animate-pulse;
+  }
+
+  .loading-skeleton-title {
+    @apply h-6 bg-muted rounded animate-pulse;
+  }
+
+  /* Enhanced Empty States */
+  .empty-state {
+    @apply text-center py-12 px-6;
+  }
+
+  .empty-state-icon {
+    @apply mx-auto h-12 w-12 text-muted-foreground mb-4;
+  }
+
+  .empty-state-title {
+    @apply text-lg font-semibold text-foreground mb-2;
+  }
+
+  .empty-state-description {
+    @apply text-muted-foreground mb-6;
+  }
+
+  /* Enhanced Tooltips with Small Rounded Corners */
+  .tooltip-modern {
+    @apply rounded-md bg-popover border border-border px-4 py-3 text-sm shadow-lg backdrop-blur-sm max-w-xs;
+  }
+
+  /* Enhanced Navigation Breadcrumbs */
+  .breadcrumb-modern {
+    @apply flex items-center space-x-2 text-sm text-muted-foreground;
+  }
+
+  .breadcrumb-modern a {
+    @apply hover:text-foreground transition-colors;
+  }
+
+  .breadcrumb-modern .separator {
+    @apply text-muted-foreground/50;
+  }
+
+  /* Enhanced Page Headers */
+  .page-header {
+    @apply border-b border-border pb-6 mb-8;
+  }
+
+  .page-header h1 {
+    @apply text-3xl font-bold text-foreground mb-2;
+  }
+
+  .page-header p {
+    @apply text-muted-foreground text-lg;
+  }
+
+  .page-header-actions {
+    @apply flex items-center space-x-4 mt-4;
+  }
+}

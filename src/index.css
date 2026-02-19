@@ -1,0 +1,800 @@
+/* Professional Admin Theme - Clean and Readable */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+@import "./styles/modern-components.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Reset and Base Styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", sans-serif;
+  background-color: hsl(var(--background)) !important;
+  color: hsl(var(--foreground)) !important;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+/* Professional Color Scheme - HSL Values for Tailwind Compatibility */
+:root {
+  /* Light Theme Colors - High Contrast */
+  --background: 0 0% 100%; /* Pure white */
+  --foreground: 0 0% 3%; /* Very dark for maximum contrast */
+  --card: 0 0% 100%; /* Pure white */
+  --card-foreground: 0 0% 3%; /* Very dark */
+  --popover: 0 0% 100%; /* Pure white */
+  --popover-foreground: 0 0% 3%; /* Very dark */
+  --primary: 142.1 76.2% 36.3%; /* Green */
+  --primary-foreground: 0 0% 100%; /* White */
+  --primary-hover: 142.1 76.2% 28%; /* Much darker green */
+  --primary-light: 142.1 76.2% 96.3%; /* Very light green */
+  --secondary: 0 0% 92%; /* Darker gray for better contrast */
+  --secondary-foreground: 0 0% 3%; /* Very dark */
+  --secondary-hover: 0 0% 85%; /* Much darker gray */
+  --muted: 0 0% 92%; /* Darker gray */
+  --muted-foreground: 0 0% 25%; /* Much darker gray for better contrast */
+  --accent: 0 0% 92%; /* Darker gray */
+  --accent-foreground: 0 0% 3%; /* Very dark */
+  --accent-light: 0 0% 92%; /* Darker gray */
+  --success: 142.1 76.2% 36.3%; /* Green */
+  --success-foreground: 0 0% 100%; /* White */
+  --warning: 38 92% 50%; /* Orange */
+  --warning-foreground: 0 0% 100%; /* White */
+  --destructive: 0 84.2% 60.2%; /* Red */
+  --destructive-foreground: 0 0% 100%; /* White */
+  --border: 0 0% 80%; /* Slightly lighter for better visibility in light theme */
+  --input: 0 0% 100%; /* White input background */
+  --ring: 142.1 76.2% 36.3%; /* Green focus ring */
+  --sidebar-background: 0 0% 96%; /* Darker sidebar background */
+  --sidebar-foreground: 0 0% 3%; /* Very dark */
+  --sidebar-primary: 142.1 76.2% 36.3%; /* Green */
+  --sidebar-primary-foreground: 0 0% 100%; /* White */
+  --sidebar-accent: 0 0% 90%; /* Darker gray */
+  --sidebar-accent-foreground: 0 0% 3%; /* Very dark */
+  --sidebar-border: 0 0% 85%; /* Slightly lighter for better visibility in light theme */
+  --sidebar-ring: 142.1 76.2% 36.3%; /* Green */
+  --radius: 0.375rem;
+  --header-height: 3.5rem;
+  --sidebar-width: 16rem;
+  --sidebar-collapsed-width: 4rem;
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Dark Theme - Supabase Style */
+.dark {
+  --background: 0 0% 9%; /* #171717 */
+  --foreground: 0 0% 98%;
+  --card: 0 0% 9%; /* #171717 */
+  --card-foreground: 0 0% 98%;
+  --popover: 0 0% 9%; /* #171717 */
+  --popover-foreground: 0 0% 98%;
+  --primary: 142.1 70.6% 45.3%;
+  --primary-foreground: 144.9 80.4% 10%;
+  --primary-hover: 142.1 70.6% 40.3%;
+  --primary-light: 142.1 70.6% 16.3%;
+  --secondary: 0 0% 15%; /* #262626 */
+  --secondary-foreground: 0 0% 98%;
+  --secondary-hover: 0 0% 20%; /* #333333 */
+  --muted: 0 0% 15%; /* #262626 */
+  --muted-foreground: 0 0% 65%;
+  --accent: 0 0% 15%; /* #262626 */
+  --accent-foreground: 0 0% 98%;
+  --accent-light: 0 0% 15%; /* #262626 */
+  --success: 142.1 70.6% 45.3%;
+  --success-foreground: 144.9 80.4% 10%;
+  --warning: 38 92% 50%;
+  --warning-foreground: 48 96% 89%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 0 0% 20%; /* #1f1f1f - much more subtle */
+  --input: 0 0% 15%; /* #262626 */
+  --ring: 142.1 70.6% 45.3%;
+  --sidebar-background: 0 0% 9%; /* #171717 */
+  --sidebar-foreground: 0 0% 98%;
+  --sidebar-primary: 142.1 70.6% 45.3%;
+  --sidebar-primary-foreground: 144.9 80.4% 10%;
+  --sidebar-accent: 0 0% 15%; /* #262626 */
+  --sidebar-accent-foreground: 0 0% 98%;
+  --sidebar-border: 0 0% 12%; /* #1f1f1f - much more subtle */
+  --sidebar-ring: 142.1 70.6% 45.3%;
+}
+
+/* Force Professional Theme */
+body {
+  background-color: hsl(var(--background)) !important;
+  color: hsl(var(--foreground)) !important;
+}
+
+.dark body {
+  background-color: hsl(var(--background)) !important;
+  color: hsl(var(--foreground)) !important;
+}
+
+/* Sidebar Styling - Supabase Style */
+.sidebar-modern {
+  background-color: hsl(var(--sidebar-background)) !important;
+  color: hsl(var(--sidebar-foreground)) !important;
+  border-right: 1px solid hsl(var(--sidebar-border)) !important;
+}
+
+.dark .sidebar-modern {
+  background-color: #171717 !important;
+  color: #ffffff !important;
+  border-right: 1px solid #1f1f1f !important;
+}
+
+/* Card Styling with Small Rounded Corners - Supabase Style */
+.modern-card {
+  background-color: hsl(var(--card)) !important;
+  color: hsl(var(--card-foreground)) !important;
+  border: 1px solid hsl(var(--border)) !important;
+  border-radius: 0.375rem !important;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06) !important;
+}
+
+.dark .modern-card {
+  background-color: #171717 !important;
+  color: #ffffff !important;
+  border: 1px solid #1f1f1f !important;
+}
+
+/* Button Styling with Small Rounded Corners - Supabase Style */
+.btn-modern {
+  background-color: hsl(var(--primary)) !important;
+  color: hsl(var(--primary-foreground)) !important;
+  border: none !important;
+  border-radius: 0.375rem !important;
+  padding: 0.5rem 1rem !important;
+  font-weight: 500 !important;
+  transition: all 0.2s ease-in-out !important;
+}
+
+.btn-modern:hover {
+  background-color: hsl(var(--primary-hover)) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Input Styling with Small Rounded Corners - Supabase Style */
+.input-modern {
+  background-color: hsl(var(--input)) !important;
+  color: hsl(var(--foreground)) !important;
+  border: 1px solid hsl(var(--border)) !important;
+  border-radius: 0.375rem !important;
+  padding: 0.5rem 0.75rem !important;
+}
+
+.dark .input-modern {
+  background-color: #262626 !important;
+  color: #ffffff !important;
+  border: 1px solid #1f1f1f !important;
+}
+
+/* Table Styling with Small Rounded Corners - Supabase Style */
+.table-modern {
+  background-color: hsl(var(--card)) !important;
+  border: 1px solid hsl(var(--border)) !important;
+  border-radius: 0.375rem !important;
+  overflow: hidden !important;
+}
+
+.table-modern th {
+  background-color: hsl(var(--muted)) !important;
+  color: hsl(var(--muted-foreground)) !important;
+  font-weight: 600 !important;
+  padding: 0.75rem 1rem !important;
+  text-align: left !important;
+  font-size: 0.875rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+}
+
+.table-modern td {
+  padding: 0.75rem 1rem !important;
+  border-top: 1px solid hsl(var(--border)) !important;
+  color: hsl(var(--foreground)) !important;
+}
+
+.dark .table-modern {
+  background-color: #171717 !important;
+  border: 1px solid #1f1f1f !important;
+}
+
+.dark .table-modern th {
+  background-color: #262626 !important;
+  color: #a3a3a3 !important;
+}
+
+.dark .table-modern td {
+  border-top: 1px solid #1f1f1f !important;
+  color: #ffffff !important;
+}
+
+/* Badge Styling with Small Rounded Corners */
+.badge-modern {
+  padding: 0.25rem 0.5rem !important;
+  border-radius: 0.375rem !important;
+  font-size: 0.75rem !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+}
+
+.badge-modern.success {
+  background-color: #15803d !important; /* Darker green for better contrast */
+  color: #ffffff !important;
+}
+
+.badge-modern.warning {
+  background-color: #d97706 !important; /* Darker orange for better contrast */
+  color: #ffffff !important; /* White text for better contrast */
+}
+
+.badge-modern.destructive {
+  background-color: #dc2626 !important; /* Darker red for better contrast */
+  color: #ffffff !important;
+}
+
+.badge-modern.primary {
+  background-color: #1d4ed8 !important; /* Darker blue for better contrast */
+  color: #ffffff !important;
+}
+
+.badge-modern.secondary {
+  background-color: #374151 !important; /* Darker gray for better contrast */
+  color: #ffffff !important;
+}
+
+.badge-modern.accent {
+  background-color: #d97706 !important; /* Darker orange for better contrast */
+  color: #ffffff !important; /* White text for better contrast */
+}
+
+/* Navigation Styling with Small Rounded Corners - Supabase Style */
+.sidebar-item-modern {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.75rem !important;
+  padding: 0.5rem 0.75rem !important;
+  border-radius: 0.375rem !important;
+  margin: 0 0.5rem !important;
+  transition: all 0.2s ease-in-out !important;
+  text-decoration: none !important;
+  color: hsl(var(--sidebar-foreground)) !important;
+}
+
+.sidebar-item-modern:hover {
+  background-color: hsl(var(--sidebar-accent)) !important;
+  color: hsl(var(--sidebar-accent-foreground)) !important;
+}
+
+.sidebar-item-modern.active {
+  background-color: hsl(var(--sidebar-primary)) !important;
+  color: hsl(var(--sidebar-primary-foreground)) !important;
+  font-weight: 600 !important;
+}
+
+.dark .sidebar-item-modern {
+  color: #ffffff !important;
+}
+
+.dark .sidebar-item-modern:hover {
+  background-color: #262626 !important;
+  color: #ffffff !important;
+}
+
+.dark .sidebar-item-modern.active {
+  background-color: #059669 !important;
+  color: #ffffff !important;
+}
+
+/* Typography - Supabase Style */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Inter", sans-serif !important;
+  font-weight: 600 !important;
+  line-height: 1.25 !important;
+  color: hsl(var(--foreground)) !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11" !important;
+}
+
+.dark h1,
+.dark h2,
+.dark h3,
+.dark h4,
+.dark h5,
+.dark h6 {
+  color: #ffffff !important;
+}
+
+h1 {
+  font-size: 1.5rem !important;
+  font-weight: 700 !important;
+}
+
+h2 {
+  font-size: 1.25rem !important;
+  font-weight: 600 !important;
+}
+
+h3 {
+  font-size: 1.125rem !important;
+  font-weight: 600 !important;
+}
+
+h4 {
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+}
+
+p {
+  font-family: "Inter", sans-serif !important;
+  color: hsl(var(--muted-foreground)) !important;
+  line-height: 1.6 !important;
+  font-size: 0.875rem !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+}
+
+.dark p {
+  color: #a3a3a3 !important;
+}
+
+/* Text sizes matching Supabase */
+.text-xs {
+  font-size: 0.75rem !important;
+  line-height: 1rem !important;
+}
+
+.text-sm {
+  font-size: 0.875rem !important;
+  line-height: 1.25rem !important;
+}
+
+.text-base {
+  font-size: 1rem !important;
+  line-height: 1.5rem !important;
+}
+
+.text-lg {
+  font-size: 1.125rem !important;
+  line-height: 1.75rem !important;
+}
+
+.text-xl {
+  font-size: 1.25rem !important;
+  line-height: 1.75rem !important;
+}
+
+/* Links - High Contrast */
+a {
+  color: #047857 !important; /* Darker green for better contrast */
+  text-decoration: none !important;
+  transition: color 0.2s ease-in-out !important;
+  font-family: "Inter", sans-serif !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+}
+
+a:hover {
+  color: #065f46 !important; /* Even darker green on hover */
+  text-decoration: underline !important;
+}
+
+.dark a {
+  color: #10b981 !important;
+}
+
+.dark a:hover {
+  color: #34d399 !important;
+}
+
+/* Focus States - High Contrast */
+*:focus-visible {
+  outline: 2px solid #047857 !important;
+  outline-offset: 2px !important;
+}
+
+/* Remove outline from avatar buttons and dropdown menus */
+[data-radix-collection-item]:focus-visible,
+[role="menuitem"]:focus-visible,
+[data-state="open"]:focus-visible,
+button[data-radix-dropdown-menu-trigger]:focus-visible,
+[data-radix-dropdown-menu-trigger]:focus-visible,
+.dropdown-menu-item:focus-visible {
+  outline: none !important;
+}
+
+/* Remove outline from avatar components specifically */
+[data-radix-avatar-root]:focus-visible,
+.avatar-button:focus-visible,
+button:has([data-radix-avatar-root]):focus-visible {
+  outline: none !important;
+}
+
+/* Scrollbar - High Contrast */
+::-webkit-scrollbar {
+  width: 8px !important;
+  height: 8px !important;
+}
+
+::-webkit-scrollbar-track {
+  background: #e2e8f0 !important; /* Darker track for better visibility */
+  border-radius: 4px !important;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #64748b !important; /* Much darker thumb for better contrast */
+  border-radius: 4px !important;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #475569 !important; /* Even darker on hover */
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #374151 !important;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #4b5563 !important;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #6b7280 !important;
+}
+
+/* Component-Specific Styles with Small Rounded Corners */
+/* Button Component */
+.btn {
+  background-color: hsl(var(--primary)) !important;
+  color: hsl(var(--primary-foreground)) !important;
+  border: none !important;
+  border-radius: 0.375rem !important;
+  padding: 0.5rem 1rem !important;
+  font-weight: 500 !important;
+  transition: all 0.2s ease-in-out !important;
+  cursor: pointer !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.5rem !important;
+}
+
+.btn:hover {
+  background-color: hsl(var(--primary-hover)) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+}
+
+.btn:disabled {
+  opacity: 0.5 !important;
+  cursor: not-allowed !important;
+  transform: none !important;
+}
+
+.btn-outline {
+  background-color: transparent !important;
+  color: hsl(var(--primary)) !important;
+  border: 1px solid hsl(var(--primary)) !important;
+}
+
+.btn-outline:hover {
+  background-color: hsl(var(--primary)) !important;
+  color: hsl(var(--primary-foreground)) !important;
+}
+
+.btn-secondary {
+  background-color: hsl(var(--secondary)) !important;
+  color: hsl(var(--secondary-foreground)) !important;
+}
+
+.btn-secondary:hover {
+  background-color: hsl(var(--secondary-hover)) !important;
+}
+
+.btn-destructive {
+  background-color: hsl(var(--destructive)) !important;
+  color: hsl(var(--destructive-foreground)) !important;
+}
+
+.btn-ghost {
+  background-color: transparent !important;
+  color: hsl(var(--foreground)) !important;
+}
+
+.btn-ghost:hover {
+  background-color: hsl(var(--accent)) !important;
+  color: hsl(var(--accent-foreground)) !important;
+}
+
+/* Tabs Component with Small Rounded Corners */
+.tabs-list {
+  background-color: hsl(var(--muted)) !important;
+  border-radius: 0.375rem !important;
+  padding: 0.25rem !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 2.5rem !important;
+}
+
+.tabs-trigger {
+  background-color: transparent !important;
+  color: hsl(var(--muted-foreground)) !important;
+  border-radius: 0.25rem !important;
+  padding: 0.5rem 0.75rem !important;
+  font-size: 0.875rem !important;
+  font-weight: 500 !important;
+  transition: all 0.2s ease-in-out !important;
+  cursor: pointer !important;
+  border: none !important;
+  outline: none !important;
+}
+
+.tabs-trigger:hover {
+  color: hsl(var(--foreground)) !important;
+  background-color: hsl(var(--accent)) !important;
+}
+
+.tabs-trigger[data-state="active"] {
+  background-color: hsl(var(--background)) !important;
+  color: hsl(var(--foreground)) !important;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Toast Component */
+.toast {
+  background-color: hsl(var(--background)) !important;
+  color: hsl(var(--foreground)) !important;
+  border: 1px solid hsl(var(--border)) !important;
+  border-radius: 0.5rem !important;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1) !important;
+  padding: 1rem !important;
+  margin: 0.5rem !important;
+  max-width: 24rem !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.toast-destructive {
+  background-color: hsl(var(--destructive)) !important;
+  color: hsl(var(--destructive-foreground)) !important;
+  border-color: hsl(var(--destructive)) !important;
+}
+
+.toast-viewport {
+  position: fixed !important;
+  top: 0 !important;
+  right: 0 !important;
+  z-index: 9999 !important;
+  padding: 1rem !important;
+  max-width: 24rem !important;
+}
+
+/* Input Component with Small Rounded Corners */
+.input {
+  background-color: hsl(var(--background)) !important;
+  color: hsl(var(--foreground)) !important;
+  border: 1px solid hsl(var(--border)) !important;
+  border-radius: 0.375rem !important;
+  padding: 0.5rem 0.75rem !important;
+  font-size: 0.875rem !important;
+  transition: border-color 0.2s ease-in-out !important;
+  outline: none !important;
+}
+
+.input:focus {
+  border-color: hsl(var(--ring)) !important;
+  box-shadow: 0 0 0 2px hsl(var(--ring) / 0.2) !important;
+}
+
+/* Select Component with Small Rounded Corners */
+.select {
+  background-color: hsl(var(--background)) !important;
+  color: hsl(var(--foreground)) !important;
+  border: 1px solid hsl(var(--border)) !important;
+  border-radius: 0.375rem !important;
+  padding: 0.5rem 0.75rem !important;
+  font-size: 0.875rem !important;
+  cursor: pointer !important;
+  outline: none !important;
+}
+
+.select:focus {
+  border-color: hsl(var(--ring)) !important;
+  box-shadow: 0 0 0 2px hsl(var(--ring) / 0.2) !important;
+}
+
+/* Card Component with Small Rounded Corners */
+.card {
+  background-color: hsl(var(--card)) !important;
+  color: hsl(var(--card-foreground)) !important;
+  border: 1px solid hsl(var(--border)) !important;
+  border-radius: 0.375rem !important;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1) !important;
+  overflow: hidden !important;
+}
+
+.card-header {
+  padding: 1.5rem !important;
+  border-bottom: 1px solid hsl(var(--border)) !important;
+}
+
+.card-content {
+  padding: 1.5rem !important;
+}
+
+.card-title {
+  font-size: 1.125rem !important;
+  font-weight: 600 !important;
+  color: hsl(var(--foreground)) !important;
+  margin: 0 !important;
+}
+
+.card-description {
+  font-size: 0.875rem !important;
+  color: hsl(var(--muted-foreground)) !important;
+  margin: 0.5rem 0 0 0 !important;
+}
+
+/* Badge Component with Small Rounded Corners */
+.badge {
+  background-color: hsl(var(--secondary)) !important;
+  color: hsl(var(--secondary-foreground)) !important;
+  border-radius: 0.375rem !important;
+  padding: 0.25rem 0.5rem !important;
+  font-size: 0.75rem !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.badge-primary {
+  background-color: hsl(var(--primary)) !important;
+  color: hsl(var(--primary-foreground)) !important;
+}
+
+.badge-secondary {
+  background-color: hsl(var(--secondary)) !important;
+  color: hsl(var(--secondary-foreground)) !important;
+}
+
+.badge-destructive {
+  background-color: hsl(var(--destructive)) !important;
+  color: hsl(var(--destructive-foreground)) !important;
+}
+
+.badge-outline {
+  background-color: transparent !important;
+  color: hsl(var(--foreground)) !important;
+  border: 1px solid hsl(var(--border)) !important;
+}
+
+/* Dialog Component with Small Rounded Corners */
+.dialog-overlay {
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  z-index: 9999 !important;
+}
+
+.dialog-content {
+  background-color: hsl(var(--background)) !important;
+  color: hsl(var(--foreground)) !important;
+  border: 1px solid hsl(var(--border)) !important;
+  border-radius: 0.375rem !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+  padding: 1.5rem !important;
+  max-width: 32rem !important;
+  width: 90vw !important;
+  max-height: 85vh !important;
+  overflow-y: auto !important;
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  z-index: 10000 !important;
+}
+
+.dialog-header {
+  margin-bottom: 1rem !important;
+}
+
+.dialog-title {
+  font-size: 1.125rem !important;
+  font-weight: 600 !important;
+  color: hsl(var(--foreground)) !important;
+  margin: 0 !important;
+}
+
+.dialog-description {
+  font-size: 0.875rem !important;
+  color: hsl(var(--muted-foreground)) !important;
+  margin: 0.5rem 0 0 0 !important;
+}
+
+/* Label Component */
+.label {
+  font-size: 0.875rem !important;
+  font-weight: 500 !important;
+  color: hsl(var(--foreground)) !important;
+  margin-bottom: 0.5rem !important;
+  display: block !important;
+}
+
+/* Separator Component */
+.separator {
+  background-color: hsl(var(--border)) !important;
+  height: 1px !important;
+  width: 100% !important;
+  margin: 1rem 0 !important;
+}
+
+/* Textarea Component with Small Rounded Corners */
+.textarea {
+  background-color: hsl(var(--background)) !important;
+  color: hsl(var(--foreground)) !important;
+  border: 1px solid hsl(var(--border)) !important;
+  border-radius: 0.375rem !important;
+  padding: 0.5rem 0.75rem !important;
+  font-size: 0.875rem !important;
+  resize: vertical !important;
+  min-height: 5rem !important;
+  transition: border-color 0.2s ease-in-out !important;
+  outline: none !important;
+}
+
+.textarea:focus {
+  border-color: hsl(var(--ring)) !important;
+  box-shadow: 0 0 0 2px hsl(var(--ring) / 0.2) !important;
+}
+
+/* Override Tailwind border colors with our custom values */
+.border-gray-200 {
+  border-color: hsl(var(--border)) !important;
+}
+
+.dark .border-gray-800 {
+  border-color: hsl(var(--border)) !important;
+}
+
+.dark .border-gray-700 {
+  border-color: hsl(var(--border)) !important;
+}
+
+.border-gray-300 {
+  border-color: hsl(var(--border)) !important;
+}
+
+/* Force all border classes to use our custom border color */
+[class*="border-"] {
+  border-color: hsl(var(--border)) !important;
+}
+
+/* Specific border-border class for Tailwind compatibility */
+.border-border {
+  border-color: hsl(var(--border)) !important;
+}
