@@ -119,6 +119,14 @@ export function OrderInformationSection({
     purchase_from: "",
     order_date: "",
   });
+  const [isEditingAccount, setIsEditingAccount] = useState(false);
+  const [accountEditData, setAccountEditData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    company: "",
+    tax_id: "",
+  });
   const [showAllPreviousOrders, setShowAllPreviousOrders] = useState(false);
 
   // Verification states
@@ -137,6 +145,13 @@ export function OrderInformationSection({
       setEditData({
         purchase_from: order.purchase_from || "",
         order_date: order.order_date || "",
+      });
+      setAccountEditData({
+        name: order.customers?.name || "",
+        email: order.customers?.email || "",
+        phone: order.customers?.phone || "",
+        company: order.customers?.company || "",
+        tax_id: order.customers?.tax_id || "",
       });
       
       // Debug logging
@@ -290,6 +305,45 @@ export function OrderInformationSection({
       });
     }
     setIsEditing(false);
+  };
+
+  const handleAccountSave = async () => {
+    try {
+      const customerId = order.customers?.id;
+      if (!customerId) {
+        toast({ title: "Error", description: "No customer linked to this order", variant: "destructive" });
+        return;
+      }
+      const { error } = await supabase
+        .from("customers")
+        .update({
+          name: accountEditData.name || null,
+          email: accountEditData.email || null,
+          phone: accountEditData.phone || null,
+          company: accountEditData.company || null,
+          tax_id: accountEditData.tax_id || null,
+        })
+        .eq("id", customerId);
+      if (error) throw error;
+      setIsEditingAccount(false);
+      toast({ title: "Success", description: "Account information updated successfully" });
+      if (onRefreshOrder) onRefreshOrder();
+    } catch (error) {
+      toast({ title: "Error", description: "Failed to update account information", variant: "destructive" });
+    }
+  };
+
+  const handleAccountCancel = () => {
+    if (order) {
+      setAccountEditData({
+        name: order.customers?.name || "",
+        email: order.customers?.email || "",
+        phone: order.customers?.phone || "",
+        company: order.customers?.company || "",
+        tax_id: order.customers?.tax_id || "",
+      });
+    }
+    setIsEditingAccount(false);
   };
 
   return (
@@ -561,7 +615,19 @@ export function OrderInformationSection({
       {/* Account Information */}
       <Card>
         <CardHeader>
-          <CardTitle>Account Information</CardTitle>
+          <div className="flex items-center justify-between">
+            <CardTitle>Account Information</CardTitle>
+            {!isEditingAccount && (
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setIsEditingAccount(true)}
+              >
+                <Edit className="h-4 w-4 mr-2" />
+                Edit
+              </Button>
+            )}
+          </div>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
@@ -573,26 +639,78 @@ export function OrderInformationSection({
             </div>
             <div className="flex justify-between items-center">
               <Label className="font-medium">Customer Name:</Label>
-              <span className="text-primary font-medium">
-                {order.customers?.name || "Not specified"}
-              </span>
+              {isEditingAccount ? (
+                <Input
+                  value={accountEditData.name}
+                  onChange={(e) => setAccountEditData(prev => ({ ...prev, name: e.target.value }))}
+                  className="w-48"
+                />
+              ) : (
+                <span className="text-primary font-medium">
+                  {order.customers?.name || "Not specified"}
+                </span>
+              )}
             </div>
             <div className="flex justify-between items-center">
               <Label className="font-medium">Email:</Label>
-              <span>{order.customers?.email || "Not specified"}</span>
+              {isEditingAccount ? (
+                <Input
+                  type="email"
+                  value={accountEditData.email}
+                  onChange={(e) => setAccountEditData(prev => ({ ...prev, email: e.target.value }))}
+                  className="w-48"
+                />
+              ) : (
+                <span>{order.customers?.email || "Not specified"}</span>
+              )}
             </div>
             <div className="flex justify-between items-center">
               <Label className="font-medium">Phone:</Label>
-              <span>{order.customers?.phone || "Not specified"}</span>
+              {isEditingAccount ? (
+                <Input
+                  value={accountEditData.phone}
+                  onChange={(e) => setAccountEditData(prev => ({ ...prev, phone: e.target.value }))}
+                  className="w-48"
+                />
+              ) : (
+                <span>{order.customers?.phone || "Not specified"}</span>
+              )}
             </div>
             <div className="flex justify-between items-center">
               <Label className="font-medium">Company:</Label>
-              <span>{order.customers?.company || "Not specified"}</span>
+              {isEditingAccount ? (
+                <Input
+                  value={accountEditData.company}
+                  onChange={(e) => setAccountEditData(prev => ({ ...prev, company: e.target.value }))}
+                  className="w-48"
+                />
+              ) : (
+                <span>{order.customers?.company || "Not specified"}</span>
+              )}
             </div>
             <div className="flex justify-between items-center">
               <Label className="font-medium">Tax ID:</Label>
-              <span>{order.customers?.tax_id || "Not specified"}</span>
+              {isEditingAccount ? (
+                <Input
+                  value={accountEditData.tax_id}
+                  onChange={(e) => setAccountEditData(prev => ({ ...prev, tax_id: e.target.value }))}
+                  className="w-48"
+                />
+              ) : (
+                <span>{order.customers?.tax_id || "Not specified"}</span>
+              )}
             </div>
+            {isEditingAccount && (
+              <div className="flex gap-2 pt-4 border-t">
+                <Button size="sm" onClick={handleAccountSave}>
+                  <Save className="h-4 w-4 mr-2" />
+                  Save
+                </Button>
+                <Button size="sm" variant="outline" onClick={handleAccountCancel}>
+                  Cancel
+                </Button>
+              </div>
+            )}
           </div>
         </CardContent>
       </Card>
