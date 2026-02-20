@@ -30,6 +30,7 @@ import {
   Trash2,
   Eye,
   Clock,
+  CheckCircle2,
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useParams } from "react-router-dom";
@@ -1079,14 +1080,25 @@ export function ShippingListTab() {
                     .map((doc: any) => (
                       <div
                         key={doc.id}
-                        className="flex items-center justify-between border rounded-lg p-3 hover:bg-muted/50"
+                        className={`flex items-center justify-between border rounded-lg p-3 hover:bg-muted/50 ${doc.printed_at ? "border-l-4 border-l-green-500 bg-green-50/50" : ""}`}
                       >
                         <div className="text-sm">
-                          <div className="font-medium">
+                          <div className={`font-medium ${doc.printed_at ? "text-muted-foreground" : ""}`}>
                             {doc.filename || "Label"}
+                            {doc.printed_at && (
+                              <span className="inline-flex items-center ml-2 text-xs text-green-600 font-normal">
+                                <CheckCircle2 className="h-3 w-3 mr-0.5" />
+                                Printed
+                              </span>
+                            )}
                           </div>
                           <div className="text-muted-foreground text-xs">
                             {new Date(doc.created_at).toLocaleString()}
+                            {doc.printed_at && (
+                              <span className="ml-2">
+                                — opened {new Date(doc.printed_at).toLocaleString()}
+                              </span>
+                            )}
                           </div>
                         </div>
                         <div className="flex items-center gap-2">
@@ -1099,6 +1111,14 @@ export function ShippingListTab() {
                                 const win = window.open(url, "_blank");
                                 if (win) {
                                   win.focus();
+                                }
+                                // Mark as printed
+                                if (!doc.printed_at) {
+                                  await supabase
+                                    .from("documents")
+                                    .update({ printed_at: new Date().toISOString() })
+                                    .eq("id", doc.id);
+                                  queryClient.invalidateQueries({ queryKey: [`order:documents:${orderId}`] });
                                 }
                               } catch (e) {
                                 // toast handled in hook if error
