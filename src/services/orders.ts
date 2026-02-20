@@ -765,8 +765,8 @@ export const orderService: OrderService = {
         return data;
       }
     } catch (error) {
-      console.warn("Order billing address table does not exist yet:", error);
-      return null;
+      console.error("Error saving billing address:", error);
+      throw error;
     }
   },
 
@@ -807,8 +807,8 @@ export const orderService: OrderService = {
         return data;
       }
     } catch (error) {
-      console.warn("Order shipping address table does not exist yet:", error);
-      return null;
+      console.error("Error saving shipping address:", error);
+      throw error;
     }
   },
 
