@@ -1109,6 +1109,29 @@ export function ShippingListTab() {
                             <Printer className="h-4 w-4 mr-1" />
                             Open
                           </Button>
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={async () => {
+                              if (!confirm("Are you sure you want to delete this label?")) return;
+                              try {
+                                const { error } = await supabase
+                                  .from("documents")
+                                  .delete()
+                                  .eq("id", doc.id);
+                                if (error) throw error;
+                                queryClient.invalidateQueries({ queryKey: [`order:documents:${orderId}`] });
+                                toast({ title: "Success", description: "Label deleted successfully" });
+                              } catch (e) {
+                                console.error("Error deleting label:", e);
+                                toast({ title: "Error", description: "Failed to delete label", variant: "destructive" });
+                              }
+                            }}
+                            className="text-red-600 hover:text-red-700"
+                          >
+                            <Trash2 className="h-4 w-4 mr-1" />
+                            Delete
+                          </Button>
                         </div>
                       </div>
                     ))
